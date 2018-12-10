@@ -15,7 +15,7 @@ function setup() {
 }
 
 function draw() {
-  fill(255)
+  fill(62)
   rect(0,0,1280,720)
   fill(0)
   text("You have " + budders + " Budders", 425 , 100)
