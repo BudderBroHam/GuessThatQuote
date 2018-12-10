@@ -8,7 +8,7 @@ var buddersandwicheseaten = 0
 function setup() {
   createCanvas(1280, 720);
   //create up button
-  budder = createButton('Buddder');
+  budder = createButton('Budder');
   budder.position(550, 300);
   budder.mousePressed(Budder);
   textSize(20);
