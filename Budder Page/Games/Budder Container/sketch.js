@@ -11,7 +11,7 @@ function preload() {
 }
 //setting up things
 function setup() {
-  createCanvas(1280, 720);
+  createCanvas(1000, 720);
   //create budder clicker button button
   budder = createButton('Budder');
   budder.position(200, 300);
