@@ -48,7 +48,7 @@ function draw() {
    text("You have " + buddersandwiches + " Budder Sandwiches", 200 , 200)
   }
   
-  if (buddersandwicheseaten > 0) {
+  if (buddersandwicheseaten >= 1) {
    text("You have eaten " + buddersandwicheseaten + " Budder Sandwiches", 200, 300)
   }
   if (buddersandwicheseaten == 1) {
