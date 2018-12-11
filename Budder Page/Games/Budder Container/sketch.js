@@ -112,23 +112,23 @@ function draw() {
   }
  
   if (buddersandwicheseatern == 16) {
-    text("Whatt", 200, 
+    text("Whatt", 200, 250)
   }
          
    if (buddersandwicheseatern == 17) {
-    text("Whatter", 200, 
+    text("Whatter", 200, 250)
   }      
   
   if (buddersandwicheseatern == 18) {
-    text("Whattier", 200, 
+    text("Whattier", 200, 250)
   }
          
   if (buddersandwicheseatern == 19) {
-    text("Whattest", 200, 
+    text("Whattest", 200, 250)
   }
          
   if (buddersandwicheseatern == 20) {
-    text("Subscribe to pewdipie", 200, 
+    text("Subscribe to pewdipie", 200, 250)
   }
   
   
