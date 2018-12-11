@@ -48,6 +48,9 @@ function draw() {
    text("You have " + buddersandwiches + " Budder Sandwiches", 200 , 200)
   }
   
+  if (buddersandwicheseaten > 0) {
+   text("You have eaten " + buddersandwicheseaten + " Budder Sandwiches", 200, 300)
+  }
   if (buddersandwicheseaten == 1) {
    text("You feel pretty good", 200 , 250)
   }
@@ -97,15 +100,35 @@ function draw() {
   }
   
   if (buddersandwicheseaten == 13) {
-   text("The only meaning in your life is eating budder sandwiches", 200 , 250)
+   text("This is the only meaning in your life", 200 , 250)
   }
   
   if (buddersandwicheseaten == 14) {
    text("You can't stop", 200 , 250)
   }
   
-  if (buddersandwicheseaten >= 15) {
+  if (buddersandwicheseaten == 15) {
    text("What", 200 , 250)
+  }
+ 
+  if (buddersandwicheseatern == 16) {
+    text("Whatt", 200, 
+  }
+         
+   if (buddersandwicheseatern == 17) {
+    text("Whatter", 200, 
+  }      
+  
+  if (buddersandwicheseatern == 18) {
+    text("Whattier", 200, 
+  }
+         
+  if (buddersandwicheseatern == 19) {
+    text("Whattest", 200, 
+  }
+         
+  if (buddersandwicheseatern == 20) {
+    text("Subscribe to pewdipie", 200, 
   }
   
   
