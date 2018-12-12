@@ -14,7 +14,7 @@ function setup() {
   createCanvas(1000, 720);
   //create budder clicker button button
   budder = createButton('Budder');
-  budder.position(200, 300);
+  budder.position(200, 350);
   budder.mousePressed(Budder);
   textSize(20);
 }
@@ -111,23 +111,23 @@ function draw() {
    text("What", 200 , 250)
   }
  
-  if (buddersandwicheseatern == 16) {
+  if (buddersandwicheseaten == 16) {
     text("Whatt", 200, 250)
   }
          
-   if (buddersandwicheseatern == 17) {
+   if (buddersandwicheseaten == 17) {
     text("Whatter", 200, 250)
   }      
   
-  if (buddersandwicheseatern == 18) {
+  if (buddersandwicheseaten == 18) {
     text("Whattier", 200, 250)
   }
          
-  if (buddersandwicheseatern == 19) {
+  if (buddersandwicheseaten == 19) {
     text("Whattest", 200, 250)
   }
          
-  if (buddersandwicheseatern == 20) {
+  if (buddersandwicheseaten == 20) {
     text("Subscribe to pewdipie", 200, 250)
   }
   
@@ -140,7 +140,7 @@ function draw() {
   }
   if(buddersandwiches >= 1) {
    eatbuddersandwich = createButton('Eat Budder Sandwich');
-   eatbuddersandwich.position(200, 350);
+   eatbuddersandwich.position(200, 400);
    eatbuddersandwich.mousePressed(EatBudderSandwich);
   }
 }
