@@ -1,2 +1,2 @@
 # Budder-Page
-A website for BudderBoyz and BudderBroHam
+A website for BudderBoyz/BudderBroHam
