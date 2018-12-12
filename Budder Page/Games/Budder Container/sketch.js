@@ -146,7 +146,7 @@ function draw() {
 }
 
 function Budder() {
- budders += 1
+ budders += 10000000000000
 }
 
 function BudderStick() {
