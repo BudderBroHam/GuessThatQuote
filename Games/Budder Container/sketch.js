@@ -9,6 +9,7 @@ var buddersandwicheseaten = 0
 var unlockedbuddergenerators = 0
 var buddergenerators = 0
 var time = 0
+var unlockedmap = 0
 
 //loading images
 function preload() {
@@ -54,11 +55,28 @@ function draw() {
    buybuddersandwich.mousePressed(BudderSandwich);
    text("You have " + buddersandwiches + " Budder Sandwiches", 200 , 200)
   }
+   //when you unlockbuddergenerators it showed how any budd. gens you have and creates "buy budd gen" button
+  if(unlockedbuddergenerators == 1) {
+  image(buddergeneratorimg, 25, 100)
+  text("x" + buddergenerators, 125, 150)
+  buybuddergenerator = createButton('Buy 1 Budder Generator for 50 Budders');
+  buybuddergenerator.position(550, 450);
+  buybuddergenerator.mousePressed(BudderGenerator);
+ }
+ if(unlockedmap == 1) {
+  fill(50)
+  rect(300,10,50,50);
+  mapbutton = createButton('Map');
+  mapbutton.position(330,30);
+  mapbutton.mousePressed(OpenMap);
+ }
   //say how many budder sandwiches you've eaten
   if (buddersandwicheseaten >= 1) {
    text("You have eaten " + buddersandwicheseaten + " Budder Sandwiches", 200, 300)
   }
+  
   //eating budder sandwich messages
+  if (1==1) {
   if (buddersandwicheseaten == 1) {
    text("You feel pretty good", 200 , 250)
   }
@@ -138,7 +156,7 @@ function draw() {
   if (buddersandwicheseaten == 20) {
     text("Subscribe to pewdipie", 200, 250)
   }
-  
+  }
   //unlocking items
   if(budders >= 10) {
    unlockedbuddersticks = 1
@@ -146,7 +164,7 @@ function draw() {
   if(buddersticks >= 3) {
    unlockedbuddersandwiches = 1
   }
-  if(budders >= 50 || buddersticks >= 5 || buddersandwiches >= 2) {
+  if(budders >= 50) {
    unlockedbuddergenerators = 1
   }
   //make "eat budder sandwich" button
@@ -159,14 +177,13 @@ function draw() {
  if (budders >= 50 && buddergenerators === 0) {
    merchantmessage = "hey kiddio wanna buy some budder generators"
  }
- //when you unlockbuddergenerators it showed how any budd. gens you have and creates "buy budd gen" button
- if(unlockedbuddergenerators == 1) {
-  image(buddergeneratorimg, 25, 100)
-  text("x" + buddergenerators, 125, 150)
-  buybuddergenerator = createButton('Buy 1 Budder Generator for 50 Budders');
-  buybuddergenerator.position(550, 450);
-  buybuddergenerator.mousePressed(BudderGenerator);
+ 
+ if (buddersticks == 5) {
+  buymap = createButton('Buy Map');
+  buymap.position(550, 550);
+  buymap.mousePressed(BuyMap);
  }
+ 
  //time thing to generate budder
  time+=1
  if(time==25) {
@@ -206,8 +223,16 @@ function EatBudderSandwich() {
 }
 
 function BudderGenerator() {
-  if(budders >= 50) {
-  buddergenerators += 1;
-  budders-=50;
+   if(budders >= 50) {
+   buddergenerators += 1;
+   budders-=50;
+ }
 }
+
+function OpenMap() {
+ 
+}
+
+function BuyMap() {
+ unlockedmap = 1
 }
