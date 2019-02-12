@@ -1,0 +1,611 @@
+<html>
+<canvas id="ctx" width="800" height="600">
+<style>
+body { background-color:#d8ceb6 }
+</style>
+<script>
+var ctx = document.getElementById("ctx").getContext("2d");
+
+//starting variables
+var Game = 0
+//when Game = 0 | starting screen
+//when Game = 1 | Clasic Mode
+//when Game = 2 | Wave Mode 
+var score = {};
+score.Upgrade = 0
+score.kills = 0
+score.Squarez = 0
+
+
+var pressingDown = false
+var pressingUp = false
+var pressingLeft = false
+var pressingRight = false
+var pressingSpace = false
+var pressingUpArrow = false
+var pressingDownArrow = false
+var pressingRightArrow = false
+var pressingLeftArrow = false
+
+var startscreen = {};
+startscreen.Select = 1
+startscreen.startscreen = true
+
+
+
+var player = {};
+player.x = 0
+player.y = 0
+player.x2 = 40
+player.y2 = 40
+player.speed = 1.5
+player.color = 'red'
+
+var enemy = {};
+enemy.x = 1000
+enemy.y = 200
+enemy.x2 = 40
+enemy.y2 = 40
+enemy.die = false
+enemy.speed = 1.5
+
+var enemy2 = {};
+enemy2.x = 1000
+enemy2.y = 0
+enemy2.speed = 1.5
+
+var bullet = {};
+bullet.y = player.y
+bullet.y2 = player.y
+bullet.y3 = player.y
+bullet.speed = 50
+
+var WIDTH = 800
+var HEIGHT = 600
+
+//start screen
+ctx.font = '50px Calibri'
+ctx.fillStyle = 'red'
+ctx.fillText('Shooty',250,100)
+ctx.fillStyle = 'blue'
+ctx.fillText('Squares',400,100)
+ctx.fillStyle = '#F3F6B0'
+ctx.fillRect(300,200,200,50);
+ctx.font = '40px Calibri'
+ctx.fillStyle = 'black'
+ctx.fillText('Play',360,235)
+ctx.fillStyle = '#F3F6B0'
+ctx.fillRect(300,275,200,50);
+ctx.font = '35px Calibri'
+ctx.fillStyle = 'black'
+ctx.fillText('Gamemodes',310,310)
+ctx.fillStyle = '#F3F6B0'
+ctx.fillRect(300,350,200,50);
+ctx.font = '40px Calibri'
+ctx.fillStyle = 'black'
+ctx.fillText('Shop',360,385)
+ctx.font = '40px Calibri'
+ctx.fillText('<---',525,235);
+
+function StartScreen() {
+	if (startscreen.Select == 1 && pressingSpace == true) {
+		startscreen.Select = 0
+		startscreen.startscreen = false
+		score.Upgrade = 0
+		score.kills = 0
+		pressingDown = false
+		pressingUp = false
+		pressingLeft = false
+		pressingRight = false
+		pressingSpace = false
+		player.x = 0
+		player.y = 0
+		player.x2 = 40
+		player.y2 = 40
+		player.speed = 1.5
+		enemy.x = 1000
+		enemy.y = 200
+		enemy.x2 = 40
+		enemy.y2 = 40
+		enemy.die = false
+		enemy.speed = 1.5
+		enemy2.x = 1000
+		enemy2.y = 200
+		enemy2.speed = 1.5
+		bullet.y = player.y
+		bullet.y2 = player.y
+		bullet.y3 = player.y
+		bullet.speed = 50
+		WIDTH = 800
+		HEIGHT = 600
+		Game = 1
+		}
+	if (startscreen.Select == 2 && pressingSpace == true) {
+		
+		}
+	if (startscreen.Select == 3 && pressingSpace == true) {
+		ctx.clearRect(0,0,WIDTH,HEIGHT)
+		ctx.fillStyle = 'black'
+		ctx.font = '25px Calibri'
+		ctx.fillText('25Sq.',50,50)
+		ctx.fillStyle = 'yellow'
+		ctx.font = '40px Helvetica'
+		ctx.fillText('Yellow',140,50)
+		ctx.fillRect(300,20,50,50)
+		ctx.fillStyle = 'black'
+		ctx.font = '25px Calibri'
+		ctx.fillText('50Sq.',50,150)
+		ctx.fillStyle = 'magenta'
+		ctx.font = '40px Helvetica'
+		ctx.fillText('Magenta',140,150)
+		ctx.fillRect(300,120,50,50)
+		ctx.fillStyle = 'black'
+		ctx.font = '40px Calibri'
+		ctx.fillText('<---',375,50);
+		ctx.font = '25px Calibri'
+		ctx.fillText('Startscreen',250,250)
+		startscreen.startscreen = false
+		ctx.fillText(score.Squarez,700,100)
+		startscreen.Select = 3.1
+		pressingSpace = false
+		if (player.color == 'yellow') {
+		ctx.fillStyle = 'maroon'
+		ctx.font = '45px Arial'
+		ctx.fillText('Purchased',100,50)
+		}
+		if (player.color == 'magenta') {
+		ctx.fillStyle = 'maroon'
+		ctx.font = '45px Arial'
+		ctx.fillText('Purchased',100,150)
+		}
+		}
+	if (startscreen.Select == 1 && (pressingDownArrow == true || pressingDown == true) && startscreen.startscreen == true) {
+		startscreen.Select = 2
+		ctx.clearRect(525,200,100,180)
+		ctx.fillText('<---',525,310)
+		pressingDownArrow = false
+		pressingDown = false
+	}
+	if (startscreen.Select == 2 && (pressingUpArrow == true || pressingUp == true) && startscreen.startscreen == true) {
+		startscreen.Select = 1
+		ctx.clearRect(525,250,100,100)
+		ctx.fillText('<---',525,235);
+	}
+	if (startscreen.Select == 2 && (pressingDownArrow == true || pressingDown == true) && startscreen.startscreen == true) {
+		startscreen.Select = 3
+		ctx.clearRect(525,250,100,100)
+		ctx.fillText('<---',525,380)
+	}
+	if (startscreen.Select == 3 && (pressingUpArrow == true || pressingUp == true) && startscreen.startscreen == true) {
+		startscreen.Select = 2
+		ctx.clearRect(525,200,100,180)
+		ctx.fillText('<---',525,310)
+		pressingUpArrow = false
+		pressingUp = false
+	}
+	if (startscreen.Select == 0.1 && Game == 0 && pressingSpace == true) {
+		score.Upgrade = 0
+		score.kills = 0
+		pressingDown = false
+		pressingUp = false
+		pressingLeft = false
+		pressingRight = false
+		pressingSpace = false
+		player.x = 0
+		player.y = 0
+		player.x2 = 40
+		player.y2 = 40
+		player.speed = 1.5
+		enemy.x = 1000
+		enemy.y = 200
+		enemy.x2 = 40
+		enemy.y2 = 40
+		enemy.die = false
+		enemy.speed = 1.5
+		enemy2.x = 1000
+		enemy2.y = 200
+		enemy2.speed = 1.5
+		bullet.y = player.y
+		bullet.y2 = player.y
+		bullet.y3 = player.y
+		bullet.speed = 50
+		WIDTH = 800
+		HEIGHT = 600
+		Game = 1
+	}
+	
+	if ((startscreen.Select == 0.2 || startscreen.Select == 3.3) && Game == 0 && pressingSpace == true) {
+	ctx.clearRect(0,0,WIDTH,HEIGHT)
+	ctx.font = '50px Calibri'
+	ctx.fillStyle = 'red'
+	ctx.fillText('Shooty',250,100)
+	ctx.fillStyle = 'blue'
+	ctx.fillText('Squares',400,100)
+	ctx.fillStyle = '#F3F6B0'
+	ctx.fillRect(300,200,200,50);
+	ctx.font = '40px Calibri'
+	ctx.fillStyle = 'black'
+	ctx.fillText('Play',360,235)
+	ctx.fillStyle = '#F3F6B0'
+	ctx.fillRect(300,275,200,50);
+	ctx.font = '35px Calibri'
+	ctx.fillStyle = 'black'
+	ctx.fillText('Gamemodes',310,310)
+	ctx.fillStyle = '#F3F6B0'
+	ctx.fillRect(300,350,200,50);
+	ctx.font = '40px Calibri'
+	ctx.fillStyle = 'black'
+	ctx.fillText('Shop',360,385)
+	ctx.font = '40px Calibri'
+	ctx.fillText('<---',525,235);
+	startscreen.Select = 1
+	pressingSpace = false
+	startscreen.startscreen = true
+	}
+	if (startscreen.Select == 0.1 && (pressingDownArrow == true || pressingDown == true)) {
+		ctx.clearRect(450,300,500,400)
+		ctx.font = '40px Calibri'
+		ctx.fillText('<---',500,425)
+		startscreen.Select = 0.2
+	}
+	if (startscreen.Select == 0.2 && (pressingUpArrow == true || pressingUp == true)) {
+		ctx.clearRect(450,400,500,400)
+		ctx.font = '40px Calibri'
+		ctx.fillText('<---',500,350)
+		startscreen.Select = 0.1
+	}
+	if (startscreen.Select == 3.1 && (pressingDown == true || pressingDownArrow == true)) {
+		ctx.clearRect(375,0,300,100)
+		ctx.font = '40px Calibri'
+		ctx.fillStyle = 'black'
+		ctx.fillText('<---',375,150);
+		startscreen.Select = 3.2
+		pressingDown = false
+		pressingDownArrow = false
+	}
+	if (startscreen.Select == 3.2 && (pressingUp == true || pressingUpArrow == true)) {
+		ctx.clearRect(375,100,300,200)
+		ctx.fillStyle = 'black'
+		ctx.fillText('<---',375,50);
+		startscreen.Select = 3.1
+	}
+	if (startscreen.Select == 3.2 && (pressingDown == true || pressingDownArrow == true)) {
+		ctx.clearRect(375,100,300,200)
+		ctx.fillText('<---',375,250);
+		startscreen.Select = 3.3
+	}
+	if (startscreen.Select == 3.3 && (pressingUp == true || pressingUpArrow == true)) {
+		ctx.clearRect(375,200,400,300)
+		ctx.font = '40px Calibri'
+		ctx.fillStyle = 'black'
+		ctx.fillText('<---',375,150);
+		startscreen.Select = 3.2
+		pressingUp = false
+		pressingUpArrow = false
+		startscreen.startscreen = false
+	}
+	if (startscreen.Select == 3.1 && pressingSpace == true && score.Squarez >= 25 && (player.color == 'red' || player.color == 'magenta')) {
+		score.Squarez -= 25
+		player.color = 'yellow'
+		ctx.fillStyle = 'maroon'
+		ctx.font = '45px Arial'
+		ctx.fillText('Purchased',100,50)
+		ctx.fillStyle = 'black'
+		ctx.font = '45px Calibri'
+		ctx.clearRect(650,50,750,150)
+		ctx.font = '25px Calibri'
+		ctx.fillText(score.Squarez,700,100)
+		
+	}
+	if (startscreen.Select == 3.2 && pressingSpace == true && score.Squarez >= 50 && (player.color == 'red' || player.color == 'yellow')) {
+		score.Squarez -= 50
+		player.color = 'magenta'
+		ctx.fillStyle = 'maroon'
+		ctx.font = '45px Arial'
+		ctx.fillText('Purchased',100,150)
+		ctx.fillStyle = 'black'
+		ctx.font = '45px Calibri'
+		ctx.clearRect(650,50,750,150)
+		ctx.font = '25px Calibri'
+		ctx.fillText(score.Squarez,700,100)
+		
+	}
+}
+
+
+
+
+
+//Key Down
+document.onkeydown = function(event) {
+	if(event.keyCode === 83)
+		pressingDown = true
+	if(event.keyCode === 87)
+		pressingUp = true
+	if(event.keyCode === 65)
+		pressingLeft = true
+	if(event.keyCode === 68)
+		pressingRight = true
+	if(event.keyCode === 32)
+		pressingSpace = true
+	if(event.keyCode === 13 && Game == 0 && startscreen.Select == 0) {
+		
+		}	
+	if(event.keyCode === 38)
+		pressingUpArrow = true
+	if(event.keyCode === 40)
+		pressingDownArrow = true
+	if(event.keyCode === 39)
+		pressingRightArrow = true
+	if(event.keyCode === 37)
+		pressingLeftArrow = true
+}
+
+//Key Up
+document.onkeyup = function(event) {
+	if(event.keyCode === 83)
+		pressingDown = false
+	if(event.keyCode === 87)
+		pressingUp = false
+	if(event.keyCode === 65)
+		pressingLeft = false
+	if(event.keyCode === 68)
+		pressingRight = false
+	if(event.keyCode === 32) {
+		pressingSpace = false
+		if (Game == 1) {
+			bullet.speed = 50
+			}
+		}
+	if(event.keyCode === 38)
+		pressingUpArrow = false
+	if(event.keyCode === 40)
+		pressingDownArrow = false
+	if(event.keyCode === 39)
+		pressingRightArrow = false
+	if(event.keyCode === 37)
+		pressingLeftArrow = false
+}
+
+	
+function updateBullet(){
+	if (pressingSpace == true && score.Upgrade == 0){
+		bullet.speed += 10
+		ctx.fillStyle = 'blue'
+		ctx.fillRect(player.x + bullet.speed,bullet.y,10,10)
+	}
+	
+	if (pressingSpace == true && score.Upgrade == 2){
+		bullet.speed += 10
+		ctx.fillStyle = 'blue'
+		ctx.fillRect(player.x + bullet.speed,bullet.y,10,10)
+	}
+	
+	if (pressingSpace == false){
+		bullet.y = player.y + 10
+		bullet.y2 = player.y + 30
+		bullet.y3 = player.y - 10
+		}
+
+	if (pressingSpace == true && score.Upgrade == 1) {
+		bullet.speed += 10
+		bullet.y2 += 2
+		bullet.y3 -= 2
+		ctx.fillStyle = 'blue'
+		ctx.fillRect(player.x + bullet.speed,bullet.y,10,10)
+		ctx.fillRect(player.x + bullet.speed,bullet.y2,10,10)
+		ctx.fillRect(player.x + bullet.speed,bullet.y3,10,10)
+		}
+	
+}
+
+function updatePlayer() {
+		ctx.fillStyle = player.color
+		ctx.clearRect(0,0,WIDTH,HEIGHT)
+		ctx.fillRect(player.x,player.y,player.x2,player.y2);
+		if ((pressingDown == true || pressingDownArrow == true) && player.y + 40 < HEIGHT) {
+			player.y += player.speed
+			}
+		if ((pressingUp == true || pressingUpArrow == true) && player.y > 0) {
+			player.y -= player.speed
+			}
+		if ((pressingLeft == true || pressingLeftArrow == true) && player.x > 0) {
+			player.x -= player.speed
+			}
+		if ((pressingRight == true || pressingRightArrow == true) && player.x + 40 < WIDTH) {
+			player.x += player.speed
+			}
+}
+
+function updateEnemy(){
+	ctx.fillStyle = 'green'
+	enemy.x -= enemy.speed
+	ctx.fillRect(enemy.x,enemy.y,enemy.x2,enemy.y2)
+	if (score.kills >= 10) {
+		enemy2.x -= enemy2.speed
+		ctx.fillRect(enemy2.x,enemy2.y,40,40)
+		}
+	}
+	
+function updateGameOver(){
+	//when bullet hits enemy
+	if ((player.x + bullet.speed  < enemy.x + 40 && player.x + bullet.speed > enemy.x) && (bullet.y < enemy.y + 40 && bullet.y > enemy.y) && pressingSpace == true) {
+	enemy.y = Math.floor(Math.random() * 560)
+	enemy.x = 1000
+	score.kills += 1
+	enemy.speed += .04
+	if (score.kills == 5) score.Upgrade = Math.floor(Math.random() * (3 - 1)) + 1;
+	}
+ //when bullet2 hits enemy1
+	if (score.Upgrade == 1 && bullet.y2 > enemy.y && bullet.y2 < enemy.y + 40 && player.x + bullet.speed > enemy.x && player.x + bullet.speed < enemy.x + 40 && pressingSpace == true ) {
+		enemy.x = 1000
+		enemy.y = Math.floor(Math.random() * 560)
+		score.kills += 1
+		enemy.speed += .04
+		}
+	//when bullet3 hits enemy1
+	if (score.Upgrade == 1 && bullet.y3 > enemy.y && bullet.y3 < enemy.y + 40 && player.x + bullet.speed > enemy.x && player.x + bullet.speed < enemy.x + 40 && pressingSpace == true ) {
+		enemy.x = 1000
+		enemy.y = Math.floor(Math.random() * 560)
+		score.kills += 1
+		enemy.speed += .04
+		}
+		//when bullet hits enemy2
+	if (score.kills > 10 &&(player.x + bullet.speed  < enemy2.x + 40 && player.x + bullet.speed > enemy2.x) && (bullet.y < enemy2.y + 40 && bullet.y > enemy2.y) && pressingSpace == true) {
+		enemy2.x = 1000
+		enemy2.y = Math.floor(Math.random() * 560)
+		score.kills += 1
+		enemy2.speed += .04
+		}
+		//when bullet2 hits enemy2
+	if (score.Upgrade == 1 && bullet.y2 > enemy2.y && bullet.y2 < enemy2.y + 40 && player.x + bullet.speed > enemy2.x && player.x + bullet.speed < enemy2.x + 40 && pressingSpace == true ) {
+		enemy2.x = 1000
+		enemy2.y = Math.floor(Math.random() * 560)
+		score.kills += 1
+		enemy2.speed += .04
+		}
+		//when bullet3 hits enemy2
+	if (score.Upgrade == 1 && bullet.y3 > enemy2.y && bullet.y3 < enemy2.y + 40 && player.x + bullet.speed > enemy2.x && player.x + bullet.speed < enemy2.x + 40 && pressingSpace == true ) {
+		enemy2.x = 1000
+		enemy2.y = Math.floor(Math.random() * 560)
+		score.kills += 1
+		enemy2.speed += .04
+		}
+		//player
+	if (((player.x || player.x + player.x + player.x2) > enemy.x - enemy.x2 && (player.x || player.x + player.x2) < enemy.x + enemy.x2) && (player.y + player.y2 < enemy.y + enemy.y2 || player.y < enemy.y + enemy.y2 )&& (player.y > enemy.y || player.y + player.y2 > enemy.y)){
+		ctx.clearRect(0,0,WIDTH,HEIGHT)
+		ctx.fillStyle = 'black'
+		ctx.font = '100px Arial'
+		ctx.fillText('Game Over',100,250);
+		Game = 0
+		score.Squarez += score.kills
+		startscreen.Select = 0.1
+		pressingSpace = false
+		ctx.font = '25px Arial'
+		ctx.fillStyle = '#F3F6B0'
+		ctx.fillRect(300,320,150,45)
+		ctx.fillStyle = 'black'
+		ctx.fillText('Play Again',310,350)
+		ctx.fillStyle = '#F3F6B0'
+		ctx.fillRect(300,400,150,45)
+		ctx.fillStyle = 'black'
+		ctx.fillText('Start Screen',305,430)
+		ctx.font = '40px Calibri'
+		ctx.fillText('<---',500,350)
+	}
+	if (((player.x || player.x + player.x + player.x2) > enemy2.x - 40 && (player.x || player.x + player.x2) < enemy2.x + 40) && (player.y + player.y2 < enemy2.y + 40 || player.y < enemy2.y + 40 )&& (player.y > enemy2.y || player.y + player.y2 > enemy2.y)){
+		ctx.clearRect(0,0,WIDTH,HEIGHT)
+		ctx.fillStyle = 'black'
+		ctx.font = '100px Arial'
+		ctx.fillText('Game Over',100,250);
+		Game = 0
+		score.Squarez += score.kills
+		startscreen.Select = 0.1
+		pressingSpace = false
+		ctx.font = '25px Arial'
+		ctx.fillStyle = '#F3F6B0'
+		ctx.fillRect(300,320,150,45)
+		ctx.fillStyle = 'black'
+		ctx.fillText('Play Again',310,350)
+		ctx.fillStyle = '#F3F6B0'
+		ctx.fillRect(300,400,150,45)
+		ctx.fillStyle = 'black'
+		ctx.fillText('Start Screen',305,430)
+		ctx.font = '40px Calibri'
+		ctx.fillText('<---',500,350)
+	}
+		//edge
+	if (enemy.x < 0) {
+		ctx.clearRect(0,0,WIDTH,HEIGHT)
+		ctx.fillStyle = 'black'
+		ctx.font = '100px Arial'
+		ctx.fillText('Game Over',100,250);
+		Game = 0
+		score.Squarez += score.kills
+		startscreen.Select = 0.1
+		pressingSpace = false
+		ctx.font = '25px Arial'
+		ctx.fillStyle = '#F3F6B0'
+		ctx.fillRect(300,320,150,45)
+		ctx.fillStyle = 'black'
+		ctx.fillText('Play Again',310,350)
+		ctx.fillStyle = '#F3F6B0'
+		ctx.fillRect(300,400,150,45)
+		ctx.fillStyle = 'black'
+		ctx.fillText('Start Screen',305,430)
+		ctx.font = '40px Calibri'
+		ctx.fillText('<---',500,350)
+		}
+		
+	if (enemy2.x < 0) {
+		ctx.clearRect(0,0,WIDTH,HEIGHT)
+		ctx.fillStyle = 'black'
+		ctx.font = '100px Arial'
+		ctx.fillText('Game Over',100,250);
+		Game = 0
+		score.Squarez += score.kills
+		startscreen.Select = 0.1
+		pressingSpace = false
+		ctx.font = '25px Arial'
+		ctx.fillStyle = '#F3F6B0'
+		ctx.fillRect(300,320,150,45)
+		ctx.fillStyle = 'black'
+		ctx.fillText('Play Again',310,350)
+		ctx.fillStyle = '#F3F6B0'
+		ctx.fillRect(300,400,150,45)
+		ctx.fillStyle = 'black'
+		ctx.fillText('Start Screen',305,430)
+		ctx.font = '40px Calibri'
+		ctx.fillText('<---',500,350)
+		}
+		
+}
+
+
+
+function updateScore() {
+	ctx.fillStyle = 'black'
+	ctx.font = '25px Arial'
+	if (Game == 1) {
+		ctx.fillText('Kills:',50,25)
+		ctx.fillText(score.kills,110,25)
+		}
+	else {
+		ctx.fillText('Kills:',350,300)
+		ctx.fillText(score.kills,410,300)
+		}
+	
+	if (score.Upgrade == 0 && Game == 1) {
+		ctx.fillText('Upgrade: None',150,25)
+	}
+	
+	if (score.Upgrade == 1 && Game == 1) {
+		ctx.fillText('Upgrade: Triple Shot',150,25)
+		}
+	
+	if (score.Upgrade == 2 && Game == 1) {
+		ctx.fillText('Upgrade: Speed Boost',150,25)
+		player.speed = 3.5
+		}
+		
+}
+function update(){
+	StartScreen();
+	if (Game == 1) {
+		updatePlayer();
+		updateEnemy();
+		updateBullet();
+		updateGameOver();
+		updateScore();
+		}
+}
+
+
+
+setInterval(update,10);
+
+
+
+
+</script>
+</html>
