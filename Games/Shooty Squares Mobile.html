@@ -311,10 +311,14 @@ function StartScreen() {
 		
 	}
 }
+	
+spacebutton = createButton('space')
+spacebutton.position(100, 65);
+spacebutton.mousePressed(pressspace)
 
-
-
-
+function pressspace() {
+       pressingSpace = true	
+}
 
 //Key Down
 document.onkeydown = function(event) {
