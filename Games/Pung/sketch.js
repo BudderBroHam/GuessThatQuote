@@ -53,7 +53,7 @@ function draw() {
    ballydirection = 0-ballydirection
   }
   //off of enemy
-  if (ballx == 1230 && bally > enemyyposition && bally < enemyyposition + 150) {
+  if (ballx == 980 && bally > enemyyposition && bally < enemyyposition + 150) {
    ballxdirection = 0-ballxdirection
   }
   //of of player
