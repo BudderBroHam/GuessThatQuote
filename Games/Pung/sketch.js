@@ -8,7 +8,7 @@ var ballslope
 var difficulty = 0
 function setup() {
   bally = random(0,600)
-  createCanvas(1280,720)
+  createCanvas(1000,720)
     //difficulty slider
   difficultyslider = createSlider(0, 10, 0);
   difficultyslider.position(50);
