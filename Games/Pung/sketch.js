@@ -40,7 +40,7 @@ function draw() {
   rect(50,yposition,10,150)
   //enemy paddle
   fill(15,255,150)
-  rect(1230,enemyyposition,10,150)
+  rect(980,enemyyposition,10,150)
   //ball
   fill(51,35,85)
   ellipse(ballx,bally,25,25)
