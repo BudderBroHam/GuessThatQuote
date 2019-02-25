@@ -31,7 +31,7 @@ function restart() {
 }
 
 function draw() {
-  yposition - 75 = mouseY
+  yposition = mouseY + 75
   //background
   fill(52,255,25)
   rect(0,0,1280,720)
