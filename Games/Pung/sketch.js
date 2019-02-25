@@ -11,7 +11,7 @@ function setup() {
   createCanvas(1000,720)
     //difficulty slider
   difficultyslider = createSlider(0, 10, 0);
-  difficultyslider.position(50);
+  difficultyslider.position(50,50);
   //restart button
   restartbutton = createButton("Restart")
   restartbutton.position(200,50)
