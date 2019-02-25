@@ -78,7 +78,7 @@ function draw() {
   }
   //if max difficulty go SICKO MODE
   if (difficulty >= 9) {
-     enemyyposition = bally
+     enemyyposition = bally + 75
   }
   //do the do
   difficulty = difficultyslider.value();
