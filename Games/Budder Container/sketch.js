@@ -180,7 +180,7 @@ function draw() {
   }
          
   if (buddersandwicheseaten == 20) {
-    text("Subscribe to pewdipie", 200, 250)
+    text("https://discord.gg/cFCtRFK", 200, 250)
   }
   }
   //unlocking items
