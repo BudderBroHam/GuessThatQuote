@@ -33,7 +33,7 @@ function restart() {
 function draw() {
   yposition = mouseY
   //background
-  fill(52,33,25)
+  fill(52,255,25)
   rect(0,0,1280,720)
   //paddle
   fill(50)
