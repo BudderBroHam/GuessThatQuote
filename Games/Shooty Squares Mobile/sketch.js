@@ -15,12 +15,13 @@ function setup() {
   createCanvas(WIDTH,HEIGHT);
   //button
    button = createButton('Shoot');
-   button.position(50 , 50);
+   button.position(50, 50);
    button.mousePressed(ButtonPressed);
    enemyy = random(100,600);
 }
 
 function draw() {
+ button.position(mouseX , mouseY);
  xposition = mouseX
  yposition = mouseY
  fill(216, 206, 182)
