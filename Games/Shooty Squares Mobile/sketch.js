@@ -1,5 +1,5 @@
-var WIDTH = 1280;
-var HEIGHT = 720
+var WIDTH = 1000;
+var HEIGHT = 600
 var xspeed = 0
 var yspeed = 0
 var xposition = 50
