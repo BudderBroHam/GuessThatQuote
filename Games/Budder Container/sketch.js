@@ -179,7 +179,7 @@ function draw() {
     text("Whattest", 200, 250)
   }
          
-  if (buddersandwicheseaten == 20) {
+  if (buddersandwicheseaten >= 20) {
     text("https://discord.gg/cFCtRFK", 200, 250)
   }
   }
