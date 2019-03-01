@@ -21,9 +21,9 @@ function setup() {
 }
 
 function draw() {
- button.position(mouseX , mouseY);
- xposition = mouseX
- yposition = mouseY
+ button.position(mouseX -25, mouseY-5);
+ xposition = mouseX - 25 
+ yposition = mouseY - 25
  fill(216, 206, 182)
  rect(0,0,WIDTH,HEIGHT)
  //making player
