@@ -194,7 +194,7 @@ function draw() {
    unlockedbuddergenerators = 1
   }
   //make "eat budder sandwich" button
-  if(buddersandwiches >= 1) {
+  if(unlockedbuddersandwiches == 1) {
    if (eatbuddersandwichbuttoncreated === false) {
     eatbuddersandwichbuttoncreated = true
     eatbuddersandwich = createButton('Eat Budder Sandwich');
@@ -219,7 +219,7 @@ function draw() {
    //----------------------------------------SHOP------------------------------------
    if (room == "shop") {
   
-  if (buddersandwicheseaten >= 1) {
+  if (eatbuddersandwichbuttoncreated === true) {
    eatbuddersandwich.remove();
   }
   //background
@@ -293,6 +293,7 @@ function Back() {
  gotoshopbuttoncreated = false
  backbuttoncreated = false
  backbutton.remove();
+ gotoshop.remove();
  buybudderstickbuttoncreated = false
  buybudderstick.remove();
  buybuddersandwichbuttoncreated = false
@@ -300,6 +301,7 @@ function Back() {
  buybuddergeneratorbuttoncreated = false
  buybuddergenerator.remove();
  buymapbuttoncreated = false
+ eatbuddersandwichbuttoncreated = false
  buymapbutton.remove();
 }
 function Budder() {
