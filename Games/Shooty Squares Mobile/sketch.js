@@ -17,7 +17,7 @@ function setup() {
    button = createButton('Shoot');
    button.position(50, 50);
    button.mousePressed(ButtonPressed);
-   enemyy = random(100,600);
+   enemyy = random(100,500);
 }
 
 function draw() {
