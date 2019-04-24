@@ -40,11 +40,7 @@ function draw() {
   }
   rect(x,y,SquareSize,SquareSize)
   if (loopmode == true && x<0) {
-    dead=false
-    fill(255)
-    x=WIDTH-SquareSize
-    y= random(SquareSize,HEIGHT-SquareSize)
-    speedy = random(-3,3)
+    Create()
   }
 }
 
