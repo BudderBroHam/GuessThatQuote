@@ -30,8 +30,7 @@ function draw() {
    x-=speed
    y-=speedy
   }
-  if ((mouseX>x && mouseX<x+SquareSize && mouseY>y && mouseY<y+SquareSize)){
-   fill(255,0,0)
+  if ((mouseX>x && mouseX<x+SquareSize && mouseY>y && mouseY<y+SquareSize)) {
    Bang()
    points+=1*speed
   }
@@ -56,12 +55,10 @@ function Bang() {
  if (loopmode == false) {
   dead =  true
   y+=10
+  fill(255,0,0)
  }
  if (loopmode == true) {
-  fill(255)
-  x=WIDTH-SquareSize
-  y= random(SquareSize,HEIGHT-SquareSize)
-  speedy = random(-3,3)
+  Create()
  }
 }
 
