@@ -9,7 +9,7 @@ var bulletx = 0
 var bullety = 0
 var enemyx = 1200
 var enemyy = 0
-var enemyalive = true
+var enemyspeed = 3
 
 function setup() {
   createCanvas(WIDTH,HEIGHT);
@@ -35,16 +35,18 @@ function draw() {
   rect(bulletx + 50,bullety,10,10)
   bulletx +=10
  }
- //enemy
- if (enemyalive == true) {
+
   fill(0,255,0)
   rect(enemyx,enemyy,50,50)
-  enemyx -= 3
- }
- if (xposition+bulletx + 50 > enemyx && xposition+bulletx + 50 < enemyx + 50 && bullety > enemyy && bullety < enemyy + 50)  {
-  enemyalive = false
- }
+  enemyx -= enemyspeed
  
+  //&& bullety > enemyy && bullety < enemyy + 50
+  //&& xposition+bulletx + 50 < enemyx + 50
+ if (bulletx+50 > enemyx && bulletx+50 < enemyx+50 && bullety > enemyy && bullety < enemyy + 50)  {
+  enemyx=1100
+   enemyspeed+=0.3
+   enemyy = random(100,500);
+ }
 }
 
 function ButtonPressed() {
