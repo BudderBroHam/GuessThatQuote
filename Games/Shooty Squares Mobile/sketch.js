@@ -47,6 +47,11 @@ function draw() {
    enemyspeed+=0.3
    enemyy = random(100,500);
  }
+  if(enemyx < 0) {
+    fill(255,0,0);
+    textSize(100)
+    text("ur dead lol", 500, 100);
+  }
 }
 
 function ButtonPressed() {
