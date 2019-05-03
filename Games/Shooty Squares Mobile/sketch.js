@@ -10,6 +10,8 @@ var bullety = 0
 var enemyx = 1200
 var enemyy = 0
 var enemyspeed = 3
+var points = 0
+var powerup = 0
 
 function setup() {
   createCanvas(WIDTH,HEIGHT);
@@ -21,36 +23,49 @@ function setup() {
 }
 
 function draw() {
+ background(216, 206, 182)
  button.position(mouseX -25, mouseY-5);
  xposition = mouseX - 25 
  yposition = mouseY - 25
- fill(216, 206, 182)
- rect(0,0,WIDTH,HEIGHT)
  //making player
  fill(255,0,0)
  rect(xposition,yposition,50,50)
  //shoot loop
- if (shoot == true) {
+ if (shoot === true) {
   fill(0,0,255)
   rect(bulletx + 50,bullety,10,10)
-  bulletx +=10
+  if (powerup === 0) {
+   bulletx +=10
+  }
  }
-
+  //making enemy
   fill(0,255,0)
   rect(enemyx,enemyy,50,50)
   enemyx -= enemyspeed
- 
-  //&& bullety > enemyy && bullety < enemyy + 50
-  //&& xposition+bulletx + 50 < enemyx + 50
+  //showing points
+  textSize(50)
+  fill(0)
+  text(points,50,50)
+  //kill enemy when bullet touches it
  if (bulletx+50 > enemyx && bulletx+50 < enemyx+50 && bullety > enemyy && bullety < enemyy + 50)  {
-  enemyx=1100
+   enemyx=1100
    enemyspeed+=0.3
    enemyy = random(100,500);
+   points+=1
  }
+ //test if enemy is at edge of screen
   if(enemyx < 0) {
     fill(255,0,0);
     textSize(100)
     text("ur dead lol", 500, 100);
+  }
+  //powerups
+  if (points > 5) {
+   powerup = "wavy"
+  }
+  if (powerup=="wavy"&&shoot===true) {
+    bulletx +=10
+    bullety = bullety+10*sin(bulletx/30)
   }
 }
 
